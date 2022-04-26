@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class Solution {
+  public:
+    string longestPalin (string S) {
+        int len = 1;
+        string ans;
+        ans = S[0];
+        // checking for ood length palindrom
+        
+        for(int i=0;i<S.length();i++)
+        {
+            int l1 = i-1;
+            int l2 = i+1;
+            
+            while(l1>=0 && l2<S.length())
+            {
+                if(S[l1]==S[l2])
+                {
+                   int l = l2-l1+1;
+                   if(l>len)
+                   {
+                       len=l;
+                       ans = S.substr(l1,l);
+                   }
+                }
+                else
+                break;
+                
+                l1--;
+                l2++;
+            }
+        }
+        
+        // checking for even length palindrom
+        for(int i=0;i<S.length();i++)
+        {
+            int l1 = i;
+            int l2 = i+1;
+            while(l1>=0 && l2<S.length())
+            {
+                if(S[l1]==S[l2])
+                {
+                    int l=l2-l1+1;
+                    if(l>len)
+                    {
+                        len = l;
+                        ans = S.substr(l1,l);
+                    }
+                }
+                else
+                break;
+                
+                l1--;
+                l2++;
+                
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        string S; cin >> S;
+        
+        Solution ob;
+        cout << ob.longestPalin (S) << endl;
+    }
+    return 0;
+}
