@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+
+
+//Function is to check whether two strings are anagram of each other or not.
+bool isAnagram(char a[], char b[]){
+    
+    int count[26];
+    for(int i=0;i<26;i++)
+    count[i] = 0;
+
+    for(int i=0;a[i]!='\0';i++)
+    {
+        count[a[i]-'a']++;
+    }
+    for(int i=0;b[i]!='\0';i++)
+    count[b[i]-'a']--;
+    
+    for(int i=0;i<26;i++)
+    if(count[i]!=0)
+    return false;
+    
+    return true;
+}
+
+.
+int main() {
+    
+    int t;
+
+    scanf("%d", &t);
+
+    while(t--){
+        char c[10000], d[10000];
+
+        scanf("%s%s", &c, &d);
+
+        if(isAnagram(c, d)) printf("YES\n");
+        else  printf("NO\n");
+    }
+
+}
