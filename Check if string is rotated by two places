@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+    public:
+    //Function to check if a string can be obtained by rotating
+    //another string by exactly 2 places.
+    bool isRotated(string str1, string str2)
+    {
+        if(str1.length()!=str2.length())
+        return false;
+        string res1 = str1.substr(0,2);
+        string res2 = str1.substr(2,str1.length()-2);
+        string ans;
+        ans = res2+res1;
+        
+        if(ans==str2)
+        return true;
+        
+        res1 = str1.substr(0,str1.length()-2);
+        res2 = str1.substr(str1.length()-2,2);
+        
+        ans = res2+res1;
+        
+        if(ans==str2)
+         return true;
+         
+         return false;
+    }
+
+};
+
+int main() {
+	
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		string b;
+		cin>>s>>b;
+		Solution obj;
+		cout<<obj.isRotated(s,b)<<endl;
+	}
+	return 0;
+}
