@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Solution
+{
+    private:
+    void reverse(char *str,int low,int high)
+    {
+        while(low<high)
+        {
+            swap(str[low],str[high]);
+            low++;
+            high--;
+        }
+    }
+    public:
+    //Function to reverse words in a given string.
+    string reverseWords(string S) 
+    { 
+        int n= S.length();
+        char str[n];
+        
+        for(int i=0;i<n;i++)
+        str[i] = S[i];
+        
+        int start = 0;
+        int end;
+        
+        for(end=0;end<n;end++)
+        {
+        
+            if(str[end]=='.')
+            {
+                reverse(str,start,end-1);
+                start = end+1;
+            }
+        }
+        
+        reverse(str,start,end-1);
+        reverse(str,0,end-1);
+        for(int i=0;i<n;i++)
+        S[i] = str[i];
+        
+        return S;
+    } 
+};
+
+
+int main() 
+{
+    int t;
+    cin >> t;
+    while (t--) 
+    {
+        string s;
+        cin >> s;
+        Solution obj;
+        cout<<obj.reverseWords(s)<<endl;
+    }
+}
