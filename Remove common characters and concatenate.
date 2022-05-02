@@ -1,0 +1,55 @@
+// uncommon characters of given strings 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+
+class Solution
+{
+    public:
+    //Function to remove common characters and concatenate two strings.
+    string concatenatedString(string s1, string s2) 
+    { 
+        vector<int> count1(256,0);
+        vector<int> count2(256,0);
+        
+        for(int i=0;i<s1.length();i++)
+        count1[s1[i]]++;
+        
+        for(int i=0;i<s2.length();i++)
+        count2[s2[i]]++;
+        
+        string ans;
+        string sum = s1+s2;
+        
+        for(int i=0;i<sum.length();i++)
+        {
+            // Is sum[i] present in s1. 
+            if(count2[sum[i]]==0)
+            ans = ans + sum[i];
+            
+            // Is sum[i] present in s2.
+            else if(count1[sum[i]]==0)
+            ans = ans + sum[i];
+        }
+       if(ans=="")
+       return "-1";
+        return ans;
+    }
+
+};
+
+
+int main() 
+{ 
+	int t;
+	cin >> t;
+	
+	while(t--){
+    	string s1, s2;
+    	cin >> s1 >> s2;
+    	Solution obj;
+    	string res = obj.concatenatedString(s1, s2);
+    	cout<<res<<endl;
+	}
+	return 0; 
+}
